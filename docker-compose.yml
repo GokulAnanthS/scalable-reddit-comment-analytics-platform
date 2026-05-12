@@ -56,7 +56,9 @@ services:
 
 
   airflow-webserver:
-    image: apache/airflow:2.8.1
+    build:
+      context: .
+      dockerfile: Dockerfile.airflow
     container_name: airflow-webserver
     command: webserver
     depends_on:
@@ -65,6 +67,8 @@ services:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
       AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__SCHEDULER__JOB_HEARTBEAT_SEC: 30
+      AIRFLOW__SCHEDULER__SCHEDULER_HEALTH_CHECK_THRESHOLD: 300
       AIRFLOW__WEBSERVER__SECRET_KEY: "WzO2zfrs5u3CML5C5qFS-XDI6O7H3QyqeapeMD-LGPI="
     volumes:
       - ./airflow/dags:/opt/airflow/dags
@@ -75,7 +79,9 @@ services:
       - "8081:8080"
 
   airflow-scheduler:
-    image: apache/airflow:2.8.1
+    build:
+      context: .
+      dockerfile: Dockerfile.airflow
     container_name: airflow-scheduler
     command: scheduler
     depends_on:
@@ -84,6 +90,8 @@ services:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
       AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__SCHEDULER__JOB_HEARTBEAT_SEC: 30
+      AIRFLOW__SCHEDULER__SCHEDULER_HEALTH_CHECK_THRESHOLD: 300
       AIRFLOW__WEBSERVER__SECRET_KEY: "WzO2zfrs5u3CML5C5qFS-XDI6O7H3QyqeapeMD-LGPI="
     volumes:
       - ./airflow/dags:/opt/airflow/dags
