@@ -1,2 +1,31 @@
 data/
 airflow/dags/__pycache__
+ivy/
+logs/
+.env
+*.env
+
+# Airflow
+airflow/logs/
+airflow/airflow.db
+airflow/webserver_config.py
+airflow/airflow.cfg
+
+# dbt
+.dbt/
+target/
+dbt_packages/
+logs/
+
+# VSCode
+.vscode/
+
+# Data Files
+*.csv
+*.parquet
+*.json
+*.gz
+
+# MinIO Local Storage
+minio/
+
