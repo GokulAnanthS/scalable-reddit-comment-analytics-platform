@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: gold
+    database: REDDIT_PIPELINE
+    schema: GOLD
+
+    tables:
+      - name: GOLD_SUBREDDIT_METRICS
+      - name: GOLD_AUTHOR_METRICS
+      - name: GOLD_INTERACTION_METRICS
+      - name: GOLD_COMMUNITY_SENTIMENT

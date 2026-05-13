@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: top_subreddits
+
+    columns:
+      - name: subreddit
+        tests:
+          - not_null
+          - unique
+
+      - name: total_posts
+        tests:
+          - not_null
